@@ -7,6 +7,11 @@ RUN npm install
 
 COPY . .
 
+# Копируем скрипт entrypoint и делаем его исполняемым
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
 EXPOSE 3000
 
-CMD ["sh", "-c", "sleep 5 && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run dev"]
+# Используем entrypoint для автоматического выполнения миграций, сидов и запуска приложения
+CMD ["/app/entrypoint.sh"]
