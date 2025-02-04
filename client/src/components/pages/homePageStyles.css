@@ -1,0 +1,52 @@
+@media screen and (max-width: 1023px) {
+  .m_bot {
+    margin-bottom: 5%;
+  }
+}
+
+@media screen and (max-width: 552px) {
+  .m_bot {
+    margin-bottom: 35%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .m_bot {
+    margin-bottom: 45%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .m_bot {
+    margin-bottom: 45%;
+  }
+}
+
+@media screen and (max-width: 373px) {
+  .m_bot {
+    margin-bottom: 45%;
+  }
+  .but_text button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .m_bot {
+    margin-bottom: 55%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .m_bot {
+    margin-bottom: 65%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .m_bot {
+    margin-bottom: 75%;
+  }
+}
+
