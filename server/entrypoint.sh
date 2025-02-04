@@ -1,9 +1,8 @@
 #!/bin/sh
 set -e
 
-echo "Ожидание готовности PostgreSQL..."
-# Ожидаем, пока база данных не станет доступной (используйте переменные окружения из вашего .env)
-while ! pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USER; do
+echo "Ждём, пока PostgreSQL поднимется..."
+until PGPASSWORD=$DB_PASS psql -h $DB_HOST -U $DB_USER -d $DB_NAME -c '\q' > /dev/null 2>&1; do
   echo "База данных не готова, ждём 1 секунду..."
   sleep 1
 done
@@ -15,5 +14,5 @@ npx sequelize-cli db:migrate
 echo "Запуск сидирования..."
 npx sequelize-cli db:seed:all
 
-echo "Запуск приложения..."
+echo "Запуск сервера..."
 exec npm run dev

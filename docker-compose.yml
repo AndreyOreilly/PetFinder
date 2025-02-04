@@ -15,7 +15,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U admin"]
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -29,13 +29,14 @@ services:
       - postgres
     env_file:
       - ./server/.env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: admin
+      DB_PASS: 123
+      DB_NAME: mydatabase
     ports:
       - "3000:3000"
-    volumes:
-      - ./server:/app
-      - /app/node_modules
-    # Убираем command, чтобы использовать CMD из Dockerfile (entrypoint.sh)
-    # command: npm run dev
 
   # ---------- Клиент (React/Vite) ----------
   client:
